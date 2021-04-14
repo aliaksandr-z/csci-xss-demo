@@ -1,0 +1,72 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+header {
+  padding: 10px;
+  text-align: center;
+  font-size: 20px;
+  color: black;
+  background-color: rgb(238, 238, 213);
+}
+
+.form-input {
+  top: 10px;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%, 25%);
+  width: 500px;
+  color: black;
+  background-color: rgb(221, 221, 199);
+  padding: 30px;
+  margin-bottom: 15px;
+}
+
+.posts {
+  top: 450px;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%, 25%);
+  width: 500px;
+  color: black;
+  background-color: rgb(221, 221, 199);
+  padding: 30px;
+  margin-bottom: 15px;
+}
+
+/* input boxes */
+.form-input input,
+.form-input textarea {
+  border: 1px solid #000;
+  border-radius: 5px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  width: 100%;
+  padding: 5px;
+}
+
+/* input boxes, change color on click*/
+.form-input input:focus,
+.form-input textarea:focus {
+  border: 1px solid rgb(27, 30, 226);
+  outline: 0;
+}
+
+.form-input h2 {
+  margin-bottom: 15px;
+}
+
+.form-input button {
+  border: 1px solid #000;
+  border-radius: 5px;
+  padding: 5px 10px;
+}
+
+.form-input button:hover {
+  background-color: brown;
+}
