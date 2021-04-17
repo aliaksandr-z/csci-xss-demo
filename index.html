@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
     <header>
@@ -12,18 +13,26 @@
     </header>
         <div class="form-input">
             <h2>Make a post:</h2>
-            <form>
+            <form id="form">
                 <label for="title">Title:</label><br>
                 <input type="text" id="title" name="title"/><br/>
     
                 <label for="body">Body:</label><br>
                 <textarea rows="5" cols="50" id="body" name="body"></textarea><br/>
 
-                <button type="submit">Post</button>
+                <button id="submit">Post</button>
             </form>
         </div>
         <div class="posts">
             <h2>View previous posts:</h2>
+            <table>
+                <tr>
+                    <td>hi</td>
+                </tr>
+                <tr>
+                    <td>hello</td>
+                </tr>
+            </table>
         </div>
 
     <script src="app.js"></script>
