@@ -30,6 +30,10 @@ header {
   margin-bottom: 15px;
 }
 
+.posts p {
+  padding-top: 3px; /* space between a post's title and body */
+}
+
 /* input boxes */
 .form-input input,
 .form-input textarea {
@@ -43,7 +47,7 @@ header {
   resize: none;
 }
 
-/* input boxes, change color on click*/
+/* input boxes, change color on click */
 .form-input input:focus,
 .form-input textarea:focus {
   border: 1px solid rgb(27, 30, 226);

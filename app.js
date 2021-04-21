@@ -1,22 +1,4 @@
-// dummy posts
-var postsDummy = [
-  { title: "Test title 1", body: "Body test 1" },
-  { title: "Test title 2", body: "Body test 2" },
-];
-
 var posts = [];
-
-function showPostsDummy() {
-  for (var i = 0; i < postsDummy.length; i++) {
-    var html =
-      "<div class='single-post'><h3>" +
-      postsDummy[i].title +
-      "</h3><p>" +
-      postsDummy[i].body +
-      "</p></div>";
-    $(".posts").append(html);
-  }
-}
 
 function showPosts() {
   for (var i = 0; i < posts.length; i++) {
@@ -26,13 +8,11 @@ function showPosts() {
       "</h3><p>" +
       posts[i].body +
       "</p></div>";
-    $(".posts").append(html);
   }
+  $(".posts").append(html);
 }
 
-showPostsDummy();
-
-var form = document.getElementById("form");
+const form = document.getElementById("form");
 
 form.addEventListener("submit", function (event) {
   event.preventDefault();
