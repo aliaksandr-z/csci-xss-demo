@@ -1,10 +1,12 @@
 * {
   box-sizing: border-box;
   margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
+textarea {
+  font-family: inherit;
+  font-size: inherit;
 }
 
 header {
@@ -72,10 +74,16 @@ header {
   margin-bottom: 15px;
 }
 
-tr,
-td {
+.single-post {
   padding: 10px;
+  margin: 10px 0;
   background-color: white;
-  border: 1px solid #000;
+  border: 1px solid;
   border-radius: 5px;
+}
+
+.single-post::after {
+  content: "";
+  clear: both;
+  display: table;
 }

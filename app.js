@@ -9,18 +9,23 @@ var posts = [];
 function showPostsDummy() {
   for (var i = 0; i < postsDummy.length; i++) {
     var html =
-      "<tr><td>" +
+      "<div class='single-post'><h3>" +
       postsDummy[i].title +
-      " " +
+      "</h3><p>" +
       postsDummy[i].body +
-      "</tr></td>";
+      "</p></div>";
     $(".posts").append(html);
   }
 }
 
 function showPosts() {
   for (var i = 0; i < posts.length; i++) {
-    var html = "<tr><td>" + posts[i].title + " " + posts[i].body + "</tr></td>";
+    var html =
+      "<div class='single-post'><h3>" +
+      posts[i].title +
+      "</h3><p>" +
+      posts[i].body +
+      "</p></div>";
     $(".posts").append(html);
   }
 }
