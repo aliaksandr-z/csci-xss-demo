@@ -31,51 +31,18 @@ header {
   margin-bottom: 15px;
 }
 
-.posts p {
-  padding-top: 3px; /* space between a post's title and body */
-}
-
 /* input boxes */
 .form-input input,
 .form-input textarea {
   border: 1px solid #000;
   border-radius: 5px;
   margin-top: 5px;
+  margin-bottom: 10px;
   width: 100%;
   padding: 5px;
   font-size: inherit;
   resize: none;
 }
-
-.form-input.error input,
-.form-input.error textarea {
-  border: 1px solid red;
-}
-
-/* error messages */
-.form-input p {
-  margin-top: 5px;
-  margin-bottom: 5px;
-  font-size: 0.9em;
-  text-align: right;
-  visibility: hidden;
-}
-
-.form-input.error p {
-  color: red;
-  visibility: visible;
-}
-
-/* .form-input input[data-error] {
-  color: red;
-  border-color: red;
-}
-
-/* grabs content of data-error */
-/* .form-input input[data-error]::after {
-  content: attr(data-error);
-}
-*/
 
 /* input boxes, change color on click */
 .form-input input:focus,
