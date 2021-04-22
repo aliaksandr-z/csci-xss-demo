@@ -20,13 +20,14 @@ header {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  padding-top: 30px;
 }
 
 .form-input,
 .posts {
   width: 500px;
   color: black;
-  padding: 30px;
+  padding-right: 30px;
   margin-bottom: 15px;
 }
 
@@ -40,12 +41,41 @@ header {
   border: 1px solid #000;
   border-radius: 5px;
   margin-top: 5px;
-  margin-bottom: 15px;
   width: 100%;
   padding: 5px;
   font-size: inherit;
   resize: none;
 }
+
+.form-input.error input,
+.form-input.error textarea {
+  border: 1px solid red;
+}
+
+/* error messages */
+.form-input p {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: 0.9em;
+  text-align: right;
+  visibility: hidden;
+}
+
+.form-input.error p {
+  color: red;
+  visibility: visible;
+}
+
+/* .form-input input[data-error] {
+  color: red;
+  border-color: red;
+}
+
+/* grabs content of data-error */
+/* .form-input input[data-error]::after {
+  content: attr(data-error);
+}
+*/
 
 /* input boxes, change color on click */
 .form-input input:focus,
