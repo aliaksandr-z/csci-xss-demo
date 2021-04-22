@@ -16,6 +16,20 @@ function showPosts() {
   $(".posts").append(html);
 }
 
+var isToggled = false;
+
+function toggle() {
+  if (!isToggled) {
+    isToggled = true;
+    document.getElementById("btn").innerHTML = "On";
+    document.getElementById("output").innerHTML = "Switched On";
+  } else {
+    isToggled = false;
+    document.getElementById("btn").innerHTML = "Off";
+    document.getElementById("output").innerHTML = "Switched Off";
+  }
+}
+
 const form = document.getElementById("form");
 
 form.addEventListener("submit", function (event) {
@@ -26,8 +40,17 @@ form.addEventListener("submit", function (event) {
   // console.log(title, escape(title));
   // console.log(body, escape(body));
 
-  posts.push({ title: encodeInput(title), body: encodeInput(body) });
+  //posts.push({ title: encodeInput(title), body: encodeInput(body) });
   //posts.push({ title: escape(title), body: escape(body) });
   //posts.push({ title: title, body: body });
+
+  console.log("isToggled: ", isToggled);
+
+  if (isToggled) {
+    posts.push({ title: title, body: body }); // vulnerable
+  } else {
+    posts.push({ title: encodeInput(title), body: encodeInput(body) }); // encoded
+  }
+
   showPosts();
 });
