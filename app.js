@@ -1,3 +1,7 @@
+function encodeInput(input) {
+  return $("<div>").text(input).html();
+}
+
 var posts = [];
 
 function showPosts() {
@@ -12,15 +16,41 @@ function showPosts() {
   $(".posts").append(html);
 }
 
+var isToggled = false;
+
+// when the switch is off, the input is not encoded
+function toggle() {
+  if (!isToggled) {
+    isToggled = true;
+    document.getElementById("output").innerHTML =
+      "Switched On: Input is encoded";
+  } else {
+    isToggled = false;
+    document.getElementById("output").innerHTML = "Switched Off: Vulnerable";
+  }
+}
+
 const form = document.getElementById("form");
 
 form.addEventListener("submit", function (event) {
   event.preventDefault();
   var title = document.getElementById("title").value;
   var body = document.getElementById("body").value;
-  console.log(title);
-  console.log(body);
 
-  posts.push({ title: title, body: body });
+  // console.log(title, escape(title));
+  // console.log(body, escape(body));
+
+  //posts.push({ title: encodeInput(title), body: encodeInput(body) });
+  //posts.push({ title: escape(title), body: escape(body) });
+  //posts.push({ title: title, body: body });
+
+  // console.log("isToggled: ", isToggled);
+
+  if (isToggled) {
+    posts.push({ title: encodeInput(title), body: encodeInput(body) }); // encoded
+  } else {
+    posts.push({ title: title, body: body }); // vulnerable
+  }
+
   showPosts();
 });
