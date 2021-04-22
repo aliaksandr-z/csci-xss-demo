@@ -1,3 +1,7 @@
+function encodeInput(input) {
+  return $("<div>").text(input).html();
+}
+
 var posts = [];
 
 function showPosts() {
@@ -18,9 +22,12 @@ form.addEventListener("submit", function (event) {
   event.preventDefault();
   var title = document.getElementById("title").value;
   var body = document.getElementById("body").value;
-  console.log(title);
-  console.log(body);
 
-  posts.push({ title: title, body: body });
+  console.log(title, escape(title));
+  console.log(body, escape(body));
+
+  posts.push({ title: encodeInput(title), body: encodeInput(body) });
+  //posts.push({ title: escape(title), body: escape(body) });
+  //posts.push({ title: title, body: body });
   showPosts();
 });
