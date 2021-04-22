@@ -18,15 +18,15 @@ function showPosts() {
 
 var isToggled = false;
 
+// when the switch is off, the input is not encoded
 function toggle() {
   if (!isToggled) {
     isToggled = true;
-    document.getElementById("btn").innerHTML = "On";
-    document.getElementById("output").innerHTML = "Switched On";
+    document.getElementById("output").innerHTML =
+      "Switched On: Input is encoded";
   } else {
     isToggled = false;
-    document.getElementById("btn").innerHTML = "Off";
-    document.getElementById("output").innerHTML = "Switched Off";
+    document.getElementById("output").innerHTML = "Switched Off: Vulnerable";
   }
 }
 
@@ -44,12 +44,12 @@ form.addEventListener("submit", function (event) {
   //posts.push({ title: escape(title), body: escape(body) });
   //posts.push({ title: title, body: body });
 
-  console.log("isToggled: ", isToggled);
+  // console.log("isToggled: ", isToggled);
 
   if (isToggled) {
-    posts.push({ title: title, body: body }); // vulnerable
-  } else {
     posts.push({ title: encodeInput(title), body: encodeInput(body) }); // encoded
+  } else {
+    posts.push({ title: title, body: body }); // vulnerable
   }
 
   showPosts();
