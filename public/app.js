@@ -46,11 +46,30 @@ form.addEventListener("submit", function (event) {
 
   // console.log("isToggled: ", isToggled);
 
-  if (isToggled) {
-    posts.push({ title: encodeInput(title), body: encodeInput(body) }); // encoded
-  } else {
-    posts.push({ title: title, body: body }); // vulnerable
-  }
+  // if (isToggled) {
+  //   posts.push({ title: encodeInput(title), body: encodeInput(body) }); // encoded
+  // } else {
+  //   posts.push({ title: title, body: body }); // vulnerable
+  // }
+
+  const data = { title, body };
+  console.log(data);
+
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  };
+
+  fetch("/api", options)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      console.log(data);
+    });
 
   showPosts();
 });
