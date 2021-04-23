@@ -18,15 +18,9 @@ app.listen(PORT, function (err) {
 
 app.post("/api", function (request, response) {
   const data = request.body;
-  console.log(data);
   const timestamp = Date.now();
   data.timestamp = timestamp;
   database.insert(data);
-  //   response.json({
-  //     timestamp: timestamp,
-  //     title: data.title,
-  //     body: data.body,
-  //   });
   response.json(data);
 });
 

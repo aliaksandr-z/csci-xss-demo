@@ -7,10 +7,8 @@ getAllPosts();
 async function getAllPosts() {
   const response = await fetch("/api");
   const data = await response.json();
-  console.log("data: ", data);
 
   for (item of data) {
-    posts.push(item);
     const root = document.createElement("div");
     root.classList.add("single-post");
 
@@ -28,7 +26,6 @@ async function getAllPosts() {
 async function getPost() {
   const response = await fetch("/api");
   const data = await response.json();
-  console.log("data: ", data[data.length - 1]);
 
   const root = document.createElement("div");
   root.classList.add("single-post");
