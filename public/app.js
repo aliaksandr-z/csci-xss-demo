@@ -4,16 +4,28 @@ function encodeInput(input) {
 
 var posts = [];
 
-function showPosts() {
-  for (var i = 0; i < posts.length; i++) {
-    var html =
-      "<div class='single-post'><h3>" +
-      posts[i].title +
-      "</h3><p>" +
-      posts[i].body +
-      "</p></div>";
+getPosts();
+
+async function getPosts() {
+  const response = await fetch("/api");
+  const data = await response.json();
+  console.log(data);
+
+  for (item of data) {
+    //console.log("array: ", data[item]);
+    const root = document.createElement("div");
+    root.classList.add("single-post");
+
+    const title = document.createElement("h3");
+    title.innerHTML = `${item.title}`;
+
+    const body = document.createElement("p");
+    body.innerHTML = `${item.body}`;
+
+    root.append(title, body);
+    $(".posts").append(root);
   }
-  $(".posts").append(html);
+  // console.log("posts2: ", posts2);
 }
 
 var isToggled = false;
@@ -53,7 +65,7 @@ form.addEventListener("submit", function (event) {
   // }
 
   const data = { title, body };
-  console.log(data);
+  // console.log(data);
 
   const options = {
     method: "POST",
@@ -68,8 +80,9 @@ form.addEventListener("submit", function (event) {
       return response.json();
     })
     .then(function (data) {
-      console.log(data);
+      console.log("You posted: ", data);
     });
 
-  showPosts();
+  //showPosts();
+  getPosts();
 });
