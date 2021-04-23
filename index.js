@@ -1,10 +1,15 @@
-const { request } = require("express");
 var express = require("express");
+var Datastore = require("nedb");
+
 var app = express();
 var PORT = 3001;
 
 app.use(express.static("public"));
 app.use(express.json({ limit: "1mb" }));
+
+const database = new Datastore("database.db");
+database.loadDatabase();
+database.insert({ title: "New post 123", body: "This is a new post" });
 
 app.listen(PORT, function (err) {
   if (err) console.log(err);
@@ -12,9 +17,14 @@ app.listen(PORT, function (err) {
 });
 
 app.post("/api", function (request, response) {
-  console.log(request.body);
+  const data = request.body;
+  console.log(data);
+  const timestamp = Date.now();
+  data.timestamp = timestamp;
+  database.insert(data);
   response.json({
-    title: request.body.title,
-    body: request.body.body,
+    timestamp: timestamp,
+    title: data.title,
+    body: data.body,
   });
 });
