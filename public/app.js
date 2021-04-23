@@ -63,24 +63,15 @@ form.addEventListener("submit", function (event) {
   event.preventDefault();
   var title = document.getElementById("title").value;
   var body = document.getElementById("body").value;
+  var data;
 
-  // console.log(title, escape(title));
-  // console.log(body, escape(body));
-
-  //posts.push({ title: encodeInput(title), body: encodeInput(body) });
-  //posts.push({ title: escape(title), body: escape(body) });
-  //posts.push({ title: title, body: body });
-
-  // console.log("isToggled: ", isToggled);
-
-  // if (isToggled) {
-  //   posts.push({ title: encodeInput(title), body: encodeInput(body) }); // encoded
-  // } else {
-  //   posts.push({ title: title, body: body }); // vulnerable
-  // }
-
-  const data = { title, body };
-  // console.log(data);
+  if (isToggled) {
+    title = encodeInput(title);
+    body = encodeInput(body);
+    data = { title, body }; // encoded
+  } else {
+    data = { title, body }; // vulnerable
+  }
 
   const options = {
     method: "POST",
