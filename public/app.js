@@ -2,17 +2,15 @@ function encodeInput(input) {
   return $("<div>").text(input).html();
 }
 
-var posts = [];
+getAllPosts();
 
-getPosts();
-
-async function getPosts() {
+async function getAllPosts() {
   const response = await fetch("/api");
   const data = await response.json();
-  console.log(data);
+  console.log("data: ", data);
 
   for (item of data) {
-    //console.log("array: ", data[item]);
+    posts.push(item);
     const root = document.createElement("div");
     root.classList.add("single-post");
 
@@ -25,7 +23,24 @@ async function getPosts() {
     root.append(title, body);
     $(".posts").append(root);
   }
-  // console.log("posts2: ", posts2);
+}
+
+async function getPost() {
+  const response = await fetch("/api");
+  const data = await response.json();
+  console.log("data: ", data[data.length - 1]);
+
+  const root = document.createElement("div");
+  root.classList.add("single-post");
+
+  const title = document.createElement("h3");
+  title.innerHTML = `${data[data.length - 1].title}`;
+
+  const body = document.createElement("p");
+  body.innerHTML = `${data[data.length - 1].body}`;
+
+  root.append(title, body);
+  $(".posts").append(root);
 }
 
 var isToggled = false;
@@ -83,6 +98,5 @@ form.addEventListener("submit", function (event) {
       console.log("You posted: ", data);
     });
 
-  //showPosts();
-  getPosts();
+  getPost();
 });
