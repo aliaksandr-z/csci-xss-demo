@@ -29,7 +29,8 @@ p#output {
 }
 
 .form-input,
-.posts {
+.posts,
+.search-bar {
   width: 500px;
   color: black;
   padding-right: 30px;
@@ -38,7 +39,8 @@ p#output {
 
 /* input boxes */
 .form-input input,
-.form-input textarea {
+.form-input textarea,
+.search-bar input {
   border: 1px solid #000;
   border-radius: 5px;
   margin-top: 5px;
@@ -51,7 +53,8 @@ p#output {
 
 /* input boxes, change color on click */
 .form-input input:focus,
-.form-input textarea:focus {
+.form-input textarea:focus,
+.search-bar input:focus {
   border: 1px solid rgb(27, 30, 226);
   outline: 0;
 }
@@ -61,14 +64,18 @@ p#output {
   margin-bottom: 15px;
 }
 
-.form-input button {
+.form-input button,
+.search-bar button {
   border: 1px solid #000;
   border-radius: 5px;
   padding: 5px 10px;
+  width: 65px;
+  text-align: center;
 }
 
-.form-input button:hover {
-  background-color: brown;
+.form-input button:hover,
+.search-bar button:hover {
+  background-color: rgb(216, 216, 216);
 }
 
 .single-post {
