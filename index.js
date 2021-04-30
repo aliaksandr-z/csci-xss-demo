@@ -34,5 +34,31 @@ app.get("/api", function (request, response) {
         return;
       }
       response.json(data);
+      console.log("data", data);
+    });
+});
+
+app.get("/search", function (request, response) {
+  // http://localhost:3001/search?title=hello&body=hello
+  // http://localhost:3001/search?title=hello
+
+  const title = request.query.title;
+  const body = request.query.body;
+
+  console.log("title:", title);
+  console.log("body:", body);
+  console.log(request.originalUrl);
+  console.log(request.path);
+
+  database
+    .find({ $or: [{ title: title }, { body: body }] })
+    .sort({ timestamp: 1 })
+    .exec(function (err, data) {
+      if (err) {
+        response.end();
+        return;
+      }
+      response.json(data);
+      console.log("data", data);
     });
 });
