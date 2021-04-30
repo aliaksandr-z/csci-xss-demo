@@ -2,47 +2,41 @@ function encodeInput(input) {
   return $("<div>").text(input).html();
 }
 
-getAllPosts();
-
-async function getAllPosts() {
-  const response = await fetch("/api");
-  const data = await response.json();
-
-  for (item of data) {
-    const root = document.createElement("div");
-    root.classList.add("single-post");
-
-    const title = document.createElement("h3");
-    title.innerHTML = `${item.title}`;
-
-    const body = document.createElement("p");
-    body.innerHTML = `${item.body}`;
-
-    root.append(title, body);
-    $(".posts").append(root);
-  }
-}
-
-async function getPost() {
-  const response = await fetch("/api");
-  const data = await response.json();
-
+function displayPost(item) {
   const root = document.createElement("div");
   root.classList.add("single-post");
 
   const title = document.createElement("h3");
-  title.innerHTML = `${data[data.length - 1].title}`;
+  title.innerHTML = `${item.title}`;
 
   const body = document.createElement("p");
-  body.innerHTML = `${data[data.length - 1].body}`;
+  body.innerHTML = `${item.body}`;
 
   root.append(title, body);
   $(".posts").append(root);
 }
 
-var isToggled = false;
+function displayPosts(data) {
+  for (item of data) {
+    displayPost(item);
+  }
+}
+
+getAllPosts();
+async function getAllPosts() {
+  const response = await fetch("/api");
+  const data = await response.json();
+  displayPosts(data);
+}
+
+async function getPost() {
+  const response = await fetch("/api");
+  const data = await response.json();
+  displayPost(data[data.length - 1]);
+}
 
 // when the switch is off, the input is not encoded
+var isToggled = false;
 function toggle() {
   if (!isToggled) {
     isToggled = true;
@@ -55,7 +49,6 @@ function toggle() {
 }
 
 const form = document.getElementById("form");
-
 form.addEventListener("submit", function (event) {
   event.preventDefault();
   var title = document.getElementById("title").value;
