@@ -64,6 +64,11 @@ p#output {
   margin-bottom: 15px;
 }
 
+#search-results-label {
+  visibility: hidden;
+  margin-top: 10px;
+}
+
 .form-input button,
 .search-bar button {
   border: 1px solid #000;

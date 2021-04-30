@@ -2,7 +2,7 @@ function encodeInput(input) {
   return $("<div>").text(input).html();
 }
 
-function displayPost(item) {
+function displayPost(item, isSearch) {
   const root = document.createElement("div");
   root.classList.add("single-post");
 
@@ -13,12 +13,19 @@ function displayPost(item) {
   body.innerHTML = `${item.body}`;
 
   root.append(title, body);
-  $(".posts").append(root);
+
+  if (isSearch) {
+    $(".search-results").append(root);
+  } else $(".posts").append(root);
 }
 
-function displayPosts(data) {
+function displayPosts(data, isSearch) {
+  var postCount;
   for (item of data) {
-    displayPost(item);
+    displayPost(item, isSearch);
+    postCount = data.length;
+    document.getElementById("search-results-label").innerHTML =
+      postCount + " results:";
   }
 }
 
@@ -93,6 +100,8 @@ formSearch.addEventListener("submit", function (event) {
     })
     .then(function (data) {
       console.log("You searched: ", data);
-      //displayPost(data[data.length - 1]);
+      document.getElementById("search-results-label").style.visibility =
+        "visible";
+      displayPosts(data, true);
     });
 });
