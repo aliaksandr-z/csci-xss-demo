@@ -88,6 +88,7 @@ formPost.addEventListener("submit", function (event) {
   getPost();
 });
 
+//http://localhost:3001/?search=%3Cscript%3Ealert%28%22hello%22%29%3C%2Fscript%3E
 const formSearch = document.getElementById("form-search");
 formSearch.addEventListener("submit", function (event) {
   event.preventDefault();
@@ -102,6 +103,7 @@ formSearch.addEventListener("submit", function (event) {
       console.log("You searched: ", data);
       document.getElementById("search-results-label").style.visibility =
         "visible";
+      $(".search-results").empty();
       displayPosts(data, true);
     });
 });

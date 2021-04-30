@@ -43,6 +43,7 @@ p#output {
 .search-bar input {
   border: 1px solid #000;
   border-radius: 5px;
+  margin-top: 5px;
   margin-bottom: 10px;
   width: 100%;
   padding: 5px;
