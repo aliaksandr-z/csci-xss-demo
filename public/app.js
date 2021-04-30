@@ -48,8 +48,8 @@ function toggle() {
   }
 }
 
-const form = document.getElementById("form");
-form.addEventListener("submit", function (event) {
+const formPost = document.getElementById("form-post");
+formPost.addEventListener("submit", function (event) {
   event.preventDefault();
   var title = document.getElementById("title").value;
   var body = document.getElementById("body").value;
@@ -79,4 +79,20 @@ form.addEventListener("submit", function (event) {
     });
 
   getPost();
+});
+
+const formSearch = document.getElementById("form-search");
+formSearch.addEventListener("submit", function (event) {
+  event.preventDefault();
+  const search = document.getElementById("search").value;
+
+  const url = "/search?title=" + search + "&body=" + search;
+  fetch(url)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      console.log("You searched: ", data);
+      //displayPost(data[data.length - 1]);
+    });
 });

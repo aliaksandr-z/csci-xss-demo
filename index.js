@@ -34,7 +34,7 @@ app.get("/api", function (request, response) {
         return;
       }
       response.json(data);
-      console.log("data", data);
+      // console.log("data", data);
     });
 });
 
@@ -59,6 +59,6 @@ app.get("/search", function (request, response) {
         return;
       }
       response.json(data);
-      console.log("data", data);
+      //console.log("data", data);
     });
 });

@@ -20,13 +20,11 @@
     <div class="container">
         <div class="form-input">
             <h2>Make a post:</h2>
-            <form>
+            <form id="form-post">
                 <label for="title">Title:</label><br>
                 <input type="text" id="title" name="title" required/><br/>
-    
                 <label for="body">Body:</label><br>
                 <textarea rows="5" cols="50" id="body" name="body" required></textarea><br/>
-
                 <button id="submit">Post</button>
             </form>
         </div>
@@ -39,13 +37,12 @@
         </div>
         <div class="search-bar">
             <h2>Search:</h2>
-            <form>
-                <input type="search" id="search" name="search"/><br/>
+            <form id="form-search">
+                <input type="text" id="search" name="tile">
                 <button id="submit-search">Search</button>
             </form>
         </div>
     </div>
-
     <script src="app.js"></script>
 </body>
 </html>
