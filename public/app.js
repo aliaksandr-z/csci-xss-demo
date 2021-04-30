@@ -55,13 +55,12 @@ form.addEventListener("submit", function (event) {
   var body = document.getElementById("body").value;
   var data;
 
+  // if switch is on, encode input
   if (isToggled) {
     title = encodeInput(title);
     body = encodeInput(body);
-    data = { title, body }; // encoded
-  } else {
-    data = { title, body }; // vulnerable
   }
+  data = { title, body };
 
   const options = {
     method: "POST",
