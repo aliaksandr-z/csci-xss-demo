@@ -25,7 +25,7 @@ function displayPosts(data, isSearch) {
     displayPost(item, isSearch);
     postCount = data.length;
     document.getElementById("search-results-label").innerHTML =
-      postCount + " results:";
+      postCount + " result(s):";
   }
 }
 
@@ -88,11 +88,19 @@ formPost.addEventListener("submit", function (event) {
   getPost();
 });
 
-//http://localhost:3001/?search=%3Cscript%3Ealert%28%22hello%22%29%3C%2Fscript%3E
+let params = new URL(document.location).searchParams;
+//var search = params.get("search");
+var search = document.location.search.substring(8);
+
+console.log("search query:", search);
+document.getElementById("search").value = search;
+
 const formSearch = document.getElementById("form-search");
-formSearch.addEventListener("submit", function (event) {
+formSearch.addEventListener("submit", function (event, query) {
   event.preventDefault();
-  const search = document.getElementById("search").value;
+  search = document.getElementById("search").value;
+  document.getElementById("search").value = search;
+  console.log("search query:", search);
 
   const url = "/search?title=" + search + "&body=" + search;
   fetch(url)
