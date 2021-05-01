@@ -23,23 +23,24 @@ function displayPosts(data, isSearch) {
   var postCount;
   for (item of data) {
     displayPost(item, isSearch);
-    postCount = data.length;
-    document.getElementById("search-results-label").innerHTML =
-      postCount + " result(s):";
   }
 }
 
 getAllPosts();
 async function getAllPosts() {
   const response = await fetch("/api");
-  const data = await response.json();
-  displayPosts(data);
+  if (response.status === 200) {
+    const data = await response.json();
+    displayPosts(data);
+  }
 }
 
 async function getPost() {
   const response = await fetch("/api");
-  const data = await response.json();
-  displayPost(data[data.length - 1]);
+  if (response.status === 200) {
+    const data = await response.json();
+    displayPost(data[data.length - 1]);
+  }
 }
 
 // when the switch is off, the input is not encoded
@@ -88,6 +89,24 @@ formPost.addEventListener("submit", function (event) {
   getPost();
 });
 
+function getSearchResults(search) {
+  const url = "/search?title=" + search + "&body=" + search;
+  console.log("url:", url);
+  fetch(url)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      $(".search-results").empty();
+      console.log("Search results: ", data);
+      document.getElementById("search-results-label").style.visibility =
+        "visible";
+      document.getElementById("search-results-label").innerHTML =
+        data.length + " result(s)";
+      displayPosts(data, true);
+    });
+}
+
 // let params = new URL(document.location).searchParams;
 // //var search = params.get("search");
 // var search = document.location.search.substring(8);
@@ -104,10 +123,10 @@ function getQueryString() {
 
 // /?search=<script>alert("hello")</script>
 $(document).ready(function () {
-  var qs = getQueryString();
-  console.log("qs:", typeof qs, qs);
-  if (qs === "undefined") {
-    document.getElementById("search").value = qs;
+  var search = getQueryString();
+  if (search != "undefined") {
+    document.getElementById("search").value = search;
+    getSearchResults(search);
   }
 });
 
@@ -116,18 +135,5 @@ formSearch.addEventListener("submit", function (event) {
   event.preventDefault();
   search = document.getElementById("search").value;
   document.getElementById("search").value = search;
-
-  const url = "/search?title=" + search + "&body=" + search;
-  console.log("url:", url);
-  fetch(url)
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      console.log("You searched: ", data);
-      document.getElementById("search-results-label").style.visibility =
-        "visible";
-      $(".search-results").empty();
-      displayPosts(data, true);
-    });
+  getSearchResults(search);
 });
