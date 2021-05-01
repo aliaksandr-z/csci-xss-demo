@@ -34,7 +34,6 @@ app.get("/api", function (request, response) {
         return;
       }
       response.json(data);
-      // console.log("data", data);
     });
 });
 
@@ -48,7 +47,6 @@ app.get("/search", function (request, response) {
   console.log("title:", title);
   console.log("body:", body);
   console.log(request.originalUrl);
-  console.log(request.path);
 
   database
     .find({ $or: [{ title: title }, { body: body }] })
@@ -59,6 +57,5 @@ app.get("/search", function (request, response) {
         return;
       }
       response.json(data);
-      //console.log("data", data);
     });
 });

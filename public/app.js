@@ -88,21 +88,37 @@ formPost.addEventListener("submit", function (event) {
   getPost();
 });
 
-let params = new URL(document.location).searchParams;
-//var search = params.get("search");
-var search = document.location.search.substring(8);
+// let params = new URL(document.location).searchParams;
+// //var search = params.get("search");
+// var search = document.location.search.substring(8);
 
-console.log("search query:", search);
-document.getElementById("search").value = search;
+// console.log("search query:", search);
+// document.getElementById("search").value = search;
+
+function getQueryString() {
+  var qs = document.location.search;
+  qs = qs.split("=");
+  qs = decodeURIComponent(qs[1]);
+  return qs;
+}
+
+// /?search=<script>alert("hello")</script>
+$(document).ready(function () {
+  var qs = getQueryString();
+  console.log("qs:", typeof qs, qs);
+  if (qs === "undefined") {
+    document.getElementById("search").value = qs;
+  }
+});
 
 const formSearch = document.getElementById("form-search");
-formSearch.addEventListener("submit", function (event, query) {
+formSearch.addEventListener("submit", function (event) {
   event.preventDefault();
   search = document.getElementById("search").value;
   document.getElementById("search").value = search;
-  console.log("search query:", search);
 
   const url = "/search?title=" + search + "&body=" + search;
+  console.log("url:", url);
   fetch(url)
     .then(function (response) {
       return response.json();
