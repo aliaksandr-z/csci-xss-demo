@@ -51,6 +51,10 @@ p#output {
   resize: none;
 }
 
+.search-bar input {
+  margin-top: 0px;
+}
+
 /* input boxes, change color on click */
 .form-input input:focus,
 .form-input textarea:focus,
