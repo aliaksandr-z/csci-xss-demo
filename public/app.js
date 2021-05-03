@@ -20,7 +20,6 @@ function displayPost(item, isSearch) {
 }
 
 function displayPosts(data, isSearch) {
-  var postCount;
   for (item of data) {
     displayPost(item, isSearch);
   }
@@ -60,6 +59,7 @@ const formPost = document.getElementById("form-post");
 formPost.addEventListener("submit", function (event) {
   event.preventDefault();
   var title = document.getElementById("title").value;
+  console.log("title:", typeof title, title);
   var body = document.getElementById("body").value;
   var data;
 
@@ -102,18 +102,15 @@ function getSearchResults(search) {
       document.getElementById("search-results-label").style.visibility =
         "visible";
       document.getElementById("search-results-label").innerHTML =
-        data.length + " result(s)";
+        data.length + " result(s) for " + search;
+      // document.getElementById("search-results-label").innerHTML =
+      //   data.length + " result(s) for " + encodeInput(search);
       displayPosts(data, true);
     });
 }
 
 // let params = new URL(document.location).searchParams;
-// //var search = params.get("search");
-// var search = document.location.search.substring(8);
-
-// console.log("search query:", search);
-// document.getElementById("search").value = search;
-
+// var search = params.get("search");
 function getQueryString() {
   var qs = document.location.search;
   qs = qs.split("=");
@@ -121,7 +118,6 @@ function getQueryString() {
   return qs;
 }
 
-// /?search=<script>alert("hello")</script>
 $(document).ready(function () {
   var search = getQueryString();
   if (search != "undefined") {
@@ -134,6 +130,6 @@ const formSearch = document.getElementById("form-search");
 formSearch.addEventListener("submit", function (event) {
   event.preventDefault();
   search = document.getElementById("search").value;
-  document.getElementById("search").value = search;
+  //document.getElementById("search").value = search;
   getSearchResults(search);
 });

@@ -1,11 +1,24 @@
 var express = require("express");
 var Datastore = require("nedb");
+var session = require("express-session");
 
 var app = express();
 var PORT = 3001;
 
 app.use(express.static("public"));
 app.use(express.json({ limit: "1mb" }));
+
+app.use(
+  session({
+    secret: "keyboard cat",
+    resave: true,
+    saveUninitialized: true,
+    cookie: {
+      secure: false,
+      httpOnly: false,
+    },
+  })
+);
 
 const database = new Datastore("database.db");
 database.loadDatabase();
