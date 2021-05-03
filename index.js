@@ -50,16 +50,14 @@ app.get("/api", function (request, response) {
     });
 });
 
+// http://localhost:3001/search?title=hello&body=hello
+// http://localhost:3001/search?title=hello
 app.get("/search", function (request, response) {
-  // http://localhost:3001/search?title=hello&body=hello
-  // http://localhost:3001/search?title=hello
-
   const title = request.query.title;
   const body = request.query.body;
 
-  console.log("title:", title);
-  console.log("body:", body);
-  console.log(request.originalUrl);
+  // console.log("search:", title);
+  // console.log(request.originalUrl);
 
   database
     .find({ $or: [{ title: title }, { body: body }] })

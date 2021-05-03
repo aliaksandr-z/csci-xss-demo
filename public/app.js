@@ -101,25 +101,38 @@ function getSearchResults(search) {
       console.log("Search results: ", data);
       document.getElementById("search-results-label").style.visibility =
         "visible";
-      document.getElementById("search-results-label").innerHTML =
-        data.length + " result(s) for " + search;
-      // document.getElementById("search-results-label").innerHTML =
-      //   data.length + " result(s) for " + encodeInput(search);
+
+      // if switch is on, encode input
+      if (isToggled) {
+        document.getElementById("search-results-label").innerHTML =
+          data.length + " result(s) for " + encodeInput(search);
+      } else {
+        document.getElementById("search-results-label").innerHTML =
+          data.length + " result(s) for " + search;
+      }
+
       displayPosts(data, true);
     });
 }
 
 // let params = new URL(document.location).searchParams;
-// var search = params.get("search");
+// var qs = params.get("search");
 function getQueryString() {
   var qs = document.location.search;
   qs = qs.split("=");
   qs = decodeURIComponent(qs[1]);
+  // qs = encodeURIComponent(qs[1]);
   return qs;
 }
 
 $(document).ready(function () {
   var search = getQueryString();
+
+  if (isToggled) {
+    console.log("ON");
+  } else {
+    console.log("OFF");
+  }
   if (search != "undefined") {
     document.getElementById("search").value = search;
     getSearchResults(search);

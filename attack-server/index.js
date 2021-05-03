@@ -2,9 +2,9 @@ var express = require("express");
 var app = express();
 var PORT = 3000;
 
-app.get("/", (req, res) => {
-  console.log(req.query.data);
-  res.send("GET Request Called");
+app.get("/", function (request, response) {
+  console.log(request.query.data);
+  response.send("GET Request Called");
 });
 
 app.listen(PORT, function (err) {
