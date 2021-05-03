@@ -1,7 +1,10 @@
+// Encodes input as text
 function encodeInput(input) {
   return $("<div>").text(input).html();
 }
 
+// Displays a single post
+// Search results are displayed under the search form
 function displayPost(item, isSearch) {
   const root = document.createElement("div");
   root.classList.add("single-post");
@@ -19,12 +22,14 @@ function displayPost(item, isSearch) {
   } else $(".posts").append(root);
 }
 
+// Displays all posts
 function displayPosts(data, isSearch) {
   for (item of data) {
     displayPost(item, isSearch);
   }
 }
 
+// Fetches all posts
 getAllPosts();
 async function getAllPosts() {
   const response = await fetch("/api");
@@ -34,6 +39,7 @@ async function getAllPosts() {
   }
 }
 
+// Fetches a newly created post
 async function getPost() {
   const response = await fetch("/api");
   if (response.status === 200) {
@@ -42,7 +48,8 @@ async function getPost() {
   }
 }
 
-// when the switch is off, the input is not encoded
+// Toggles the switch to encode new input
+// When the switch is off, the input is not encoded
 var isToggled = false;
 function toggle() {
   if (!isToggled) {
@@ -55,11 +62,12 @@ function toggle() {
   }
 }
 
+// Grabs the input from the title and body forms and posts it
+// Fetches the newly created post
 const formPost = document.getElementById("form-post");
 formPost.addEventListener("submit", function (event) {
   event.preventDefault();
   var title = document.getElementById("title").value;
-  console.log("title:", typeof title, title);
   var body = document.getElementById("body").value;
   var data;
 
@@ -89,9 +97,10 @@ formPost.addEventListener("submit", function (event) {
   getPost();
 });
 
+// Fetches and displays the search results
 function getSearchResults(search) {
   const url = "/search?title=" + search + "&body=" + search;
-  console.log("url:", url);
+  // console.log("url:", url);
   fetch(url)
     .then(function (response) {
       return response.json();
@@ -115,34 +124,28 @@ function getSearchResults(search) {
     });
 }
 
-// let params = new URL(document.location).searchParams;
-// var qs = params.get("search");
+// Returns the query string from the location bar
 function getQueryString() {
   var qs = document.location.search;
   qs = qs.split("=");
   qs = decodeURIComponent(qs[1]);
-  // qs = encodeURIComponent(qs[1]);
+  //qs = encodeInput(decodeURIComponent(qs[1]));
   return qs;
 }
 
+// Fills the search form with the query string from the location bar and gets the search results
 $(document).ready(function () {
   var search = getQueryString();
-
-  if (isToggled) {
-    console.log("ON");
-  } else {
-    console.log("OFF");
-  }
   if (search != "undefined") {
     document.getElementById("search").value = search;
     getSearchResults(search);
   }
 });
 
+// Grabs the input from the search form and gets the search results
 const formSearch = document.getElementById("form-search");
 formSearch.addEventListener("submit", function (event) {
   event.preventDefault();
   search = document.getElementById("search").value;
-  //document.getElementById("search").value = search;
   getSearchResults(search);
 });
