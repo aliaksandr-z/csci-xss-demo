@@ -5,7 +5,7 @@
 }
 
 body {
-  background-color: rgb(221, 221, 199);
+  background-color: #d4e8f2;
 }
 
 header {
@@ -13,7 +13,7 @@ header {
   text-align: center;
   font-size: 20px;
   color: black;
-  background-color: rgb(238, 238, 213);
+  background-color: #90afc1;
 }
 
 p#output {
@@ -53,14 +53,6 @@ p#output {
 
 .search-bar input {
   margin-top: 0px;
-}
-
-/* input boxes, change color on click */
-.form-input input:focus,
-.form-input textarea:focus,
-.search-bar input:focus {
-  border: 1px solid rgb(27, 30, 226);
-  outline: 0;
 }
 
 .form-input h2,
