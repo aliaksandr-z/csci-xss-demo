@@ -16,6 +16,10 @@ header {
   background-color: #90afc1;
 }
 
+p {
+  overflow-wrap: break-word;
+}
+
 p#output {
   text-align: right;
   font-size: 0.6em;
@@ -33,8 +37,13 @@ p#output {
 .search-bar {
   width: 500px;
   color: black;
-  padding-right: 30px;
+  padding-right: 20px;
+  padding-left: 20px;
   margin-bottom: 15px;
+}
+
+.posts h3 {
+  padding-bottom: 3px;
 }
 
 /* input boxes */
@@ -44,7 +53,7 @@ p#output {
   border: 1px solid #000;
   border-radius: 5px;
   margin-top: 5px;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   width: 100%;
   padding: 5px;
   font-size: inherit;
@@ -73,7 +82,6 @@ p#output {
   padding: 5px 10px;
   width: 65px;
   text-align: center;
-  margin-top: 3px;
 }
 
 .form-input button:hover,
