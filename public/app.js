@@ -3,6 +3,23 @@ function encodeInput(input) {
   return $("<div>").text(input).html();
 }
 
+// Saves toggle button state
+function saveToggle() {
+  var checked = document.getElementById("toggle-btn");
+  localStorage.setItem("toggle-btn", checked.checked);
+}
+
+// Loads toggle button state
+function loadToggle() {
+  var checked = JSON.parse(localStorage.getItem("toggle-btn"));
+  document.getElementById("toggle-btn").checked = checked;
+  if (checked == true) {
+    isToggled = true;
+  } else {
+    isToggled = false;
+  }
+}
+
 // Displays a single post
 // Search results are displayed under the search form
 function displayPost(item, isSearch) {
@@ -50,8 +67,9 @@ async function getPost() {
 
 // Toggles the switch to encode new input
 // When the switch is off, the input is not encoded
-var isToggled = false;
+var isToggled;
 function toggle() {
+  saveToggle();
   if (!isToggled) {
     isToggled = true;
     document.getElementById("output").innerHTML =
@@ -129,12 +147,19 @@ function getQueryString() {
   var qs = document.location.search;
   qs = qs.split("=");
   qs = decodeURIComponent(qs[1]);
-  //qs = encodeInput(decodeURIComponent(qs[1]));
+
+  // if switch is on, encode input
+  if (isToggled) {
+    qs = encodeInput(qs);
+    console.log("qs:", qs);
+  }
+
   return qs;
 }
 
 // Fills the search form with the query string from the location bar and gets the search results
 $(document).ready(function () {
+  loadToggle();
   var search = getQueryString();
   if (search != "undefined") {
     document.getElementById("search").value = search;
