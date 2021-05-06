@@ -151,7 +151,6 @@ function getQueryString() {
   // if switch is on, encode input
   if (isToggled) {
     qs = encodeInput(qs);
-    console.log("qs:", qs);
   }
 
   return qs;

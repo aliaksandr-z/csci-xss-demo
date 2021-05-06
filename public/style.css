@@ -86,7 +86,7 @@ p#output {
 
 .form-input button:hover,
 .search-bar button:hover {
-  background-color: rgb(216, 216, 216);
+  background-color: #d8d8d8;
 }
 
 .single-post {
@@ -142,11 +142,11 @@ p#output {
 }
 
 input:checked + .slider {
-  background-color: #15c52d;
+  background-color: #11912d;
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px #14ad36;
+  box-shadow: 0 0 1px #11912d;
 }
 
 input:checked + .slider:before {
