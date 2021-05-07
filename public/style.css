@@ -180,4 +180,9 @@ button#clear {
   background-color: #ccc;
   border: none;
   cursor: pointer;
+  opacity: 10%;
+}
+
+button#clear:hover {
+  opacity: 100%;
 }
