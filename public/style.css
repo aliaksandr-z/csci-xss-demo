@@ -16,6 +16,11 @@ header {
   background-color: #90afc1;
 }
 
+h1 {
+  display: inline-block;
+  position: relative;
+}
+
 p {
   overflow-wrap: break-word;
 }
@@ -82,6 +87,7 @@ p#output {
   padding: 5px 10px;
   width: 65px;
   text-align: center;
+  cursor: pointer;
 }
 
 .form-input button:hover,
@@ -161,4 +167,22 @@ input:checked + .slider:before {
 
 .slider.round:before {
   border-radius: 50%;
+}
+
+button#clear {
+  position: absolute;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  top: 10px;
+  left: 10px;
+  border-radius: 34px;
+  background-color: #ccc;
+  border: none;
+  cursor: pointer;
+  opacity: 10%;
+}
+
+button#clear:hover {
+  opacity: 100%;
 }

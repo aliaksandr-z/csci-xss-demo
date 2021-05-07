@@ -50,6 +50,11 @@ app.get("/api", function (request, response) {
     });
 });
 
+app.delete("/api", function (request, response) {
+  database.remove({}, { multi: true });
+  response.send("DELETE Posts");
+});
+
 // http://localhost:3001/search?title=hello&body=hello
 // http://localhost:3001/search?title=hello
 app.get("/search", function (request, response) {

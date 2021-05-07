@@ -20,6 +20,19 @@ function loadToggle() {
   }
 }
 
+// Deletes all of the posts in the database
+function deletePosts() {
+  fetch("/api", {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: null,
+  }).then(function (response) {
+    return response.json;
+  });
+}
+
 // Displays a single post
 // Search results are displayed under the search form
 function displayPost(item, isSearch) {
