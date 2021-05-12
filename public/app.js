@@ -15,8 +15,11 @@ function loadToggle() {
   document.getElementById("toggle-btn").checked = checked;
   if (checked == true) {
     isToggled = true;
+    document.getElementById("output").innerHTML =
+      "Switched On: Input is encoded";
   } else {
     isToggled = false;
+    document.getElementById("output").innerHTML = "Switched Off: Vulnerable";
   }
 }
 
