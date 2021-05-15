@@ -22,7 +22,6 @@ app.use(
 
 const database = new Datastore("database.db");
 database.loadDatabase();
-// database.insert({ title: "New post 123", body: "This is a new post" });
 
 app.listen(PORT, function (err) {
   if (err) console.log(err);
@@ -55,14 +54,9 @@ app.delete("/api", function (request, response) {
   response.send("DELETE Posts");
 });
 
-// http://localhost:3001/search?title=hello&body=hello
-// http://localhost:3001/search?title=hello
 app.get("/search", function (request, response) {
   const title = request.query.title;
   const body = request.query.body;
-
-  // console.log("search:", title);
-  // console.log(request.originalUrl);
 
   database
     .find({ $or: [{ title: title }, { body: body }] })

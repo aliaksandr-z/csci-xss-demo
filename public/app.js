@@ -134,14 +134,13 @@ formPost.addEventListener("submit", function (event) {
 // Fetches and displays the search results
 function getSearchResults(search) {
   const url = "/search?title=" + search + "&body=" + search;
-  // console.log("url:", url);
+
   fetch(url)
     .then(function (response) {
       return response.json();
     })
     .then(function (data) {
       $(".search-results").empty();
-      console.log("Search results: ", data);
       document.getElementById("search-results-label").style.visibility =
         "visible";
 
