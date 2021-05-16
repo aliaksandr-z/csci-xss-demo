@@ -32,7 +32,7 @@ New posts are added to the bottom of the **View previous posts** list.
 
 ### Searching
 To search through existing posts, input a search query under **Search** and click the **Search** button. 
-The search is case senstive and looks for an exact match within each post's title and body.
+The search is case sensitive and looks for an exact match within each post's title and body.
 Search queries can also be entered using http://localhost:3001/?search=.
 
 ### Clearing existing posts
